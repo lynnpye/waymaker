@@ -19,6 +19,12 @@ will simply be saved to the currently chosen waypoint set.
 The custom waypoint set to save new waystone waypoints to. Only used if 'Target Custom Waypoint Set'
 is true.
 
+## Why This Mod?
+There exists a mod, [Waystones2Waypoints (w2w)](https://www.curseforge.com/minecraft/mc-mods/waystones2waypoints), but
+it hasn't been updated for 1.18.2.
+
+If built-in support for Waystone waypoint updates becomes available, this mod would no longer be needed. In the meantime,
+here it is.
 
 ## Permissions
 Feel free to use my mod in your modpack. Please let me know if you do, as it's nice to hear from folks.
