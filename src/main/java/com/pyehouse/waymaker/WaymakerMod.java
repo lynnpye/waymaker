@@ -1,10 +1,12 @@
 package com.pyehouse.waymaker;
 
-import com.pyehouse.waymaker.common.CommonRegistrar;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
+import com.pyehouse.waymaker.client.ClientRegistrar;
+import com.pyehouse.waymaker.client.config.Config;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,11 +18,10 @@ public class WaymakerMod {
 
     public WaymakerMod() {
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        final IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
 
-        final CommonRegistrar commonRegistrar = new CommonRegistrar(modEventBus, forgeEventBus);
-        commonRegistrar.registration();
+        final ClientRegistrar clientRegistrar = new ClientRegistrar();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> clientRegistrar::registration);
 
     }
 }

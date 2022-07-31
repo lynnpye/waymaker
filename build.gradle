@@ -44,6 +44,7 @@ minecraft {
         client {
             workingDirectory project.file('run')
 
+            property "mixin.env.disableRefMap", "true"
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
@@ -70,7 +71,7 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-            property 'mixin.env.remapRefMap', 'true'
+            property "mixin.env.disableRefMap", "true"
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -146,9 +147,9 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
-    compileOnly fg.deobf("curse.maven:balm-531761:3830790")
-    compileOnly fg.deobf("curse.maven:waystones-245755:3830849")
-    compileOnly fg.deobf("curse.maven:xaeros-minimap-263420:3876770")
+    implementation fg.deobf("curse.maven:balm-531761:3830790")
+    implementation fg.deobf("curse.maven:waystones-245755:3830849")
+    implementation fg.deobf("curse.maven:xaeros-minimap-263420:3876770")
 
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
