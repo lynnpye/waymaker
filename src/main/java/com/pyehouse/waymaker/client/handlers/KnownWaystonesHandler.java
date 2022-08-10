@@ -6,6 +6,7 @@ import net.blay09.mods.waystones.api.IWaystone;
 import net.blay09.mods.waystones.api.KnownWaystonesEvent;
 import net.blay09.mods.waystones.core.InvalidWaystone;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import xaero.common.XaeroMinimapSession;
@@ -21,6 +22,7 @@ import java.util.List;
 public class KnownWaystonesHandler {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @SubscribeEvent
     public static void handleMessage(KnownWaystonesEvent event) {
         List<IWaystone> waystones = event.getWaystones();
 

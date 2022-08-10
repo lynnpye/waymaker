@@ -1,7 +1,7 @@
 package com.pyehouse.waymaker.shared.util;
 
 import net.blay09.mods.waystones.api.IWaystone;
-import net.minecraft.core.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import xaero.common.minimap.waypoints.Waypoint;
 import xaero.common.settings.ModSettings;
 
