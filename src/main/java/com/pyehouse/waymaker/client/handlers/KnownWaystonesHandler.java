@@ -41,7 +41,14 @@ public class KnownWaystonesHandler {
             waypointSet = waypointsManager.getCurrentWorld().getCurrentSet();
         }
 
+        String waypointCurrentDimension = waypointsManager.getCurrentWorld().getContainer().getSubName();
+
         for (IWaystone waystone : waystones) {
+            String waystoneDimension = waystone.getDimension().location().getPath();
+            if (!waystoneDimension.equals(waypointCurrentDimension)) {
+                continue;
+            }
+
             boolean matched = false;
 
             if (waystone instanceof InvalidWaystone) {
@@ -49,10 +56,16 @@ public class KnownWaystonesHandler {
             }
 
             String name = waystone.hasName() ? waystone.getName() : "New Waystone";
-            for (Waypoint waypoint : waypointSet.getList()) {
-                if (Waymaker.matching(waystone, waypoint)) {
-                    matched = true;
-                    waypoint.setName(name);
+
+            for (WaypointSet testPointSet : waypointsManager.getCurrentWorld().getSets().values()) {
+                for (Waypoint waypoint : testPointSet.getList()) {
+                    if (Waymaker.matching(waystone, waypoint)) {
+                        matched = true;
+                        waypoint.setName(name);
+                        break;
+                    }
+                }
+                if (matched) {
                     break;
                 }
             }
