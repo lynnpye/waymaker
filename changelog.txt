@@ -1,3 +1,9 @@
-Build: 1.18-1.0
+1.17-1.1
+    hextun01:
+        Fixed: Touching a new waystone in a new dimension no longer copies waypoints from other dimensions
+        Fixed: Touching a new waystone no longer copies waypoints from other lists
+        Fixed: Better config formatting
+========
+1.17-1.0
     hextun01:
         Initial release
