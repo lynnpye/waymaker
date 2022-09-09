@@ -11,9 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import xaero.common.XaeroMinimapSession;
 import xaero.common.core.IXaeroMinimapClientPlayNetHandler;
-import xaero.common.minimap.waypoints.Waypoint;
-import xaero.common.minimap.waypoints.WaypointSet;
-import xaero.common.minimap.waypoints.WaypointsManager;
+import xaero.common.minimap.waypoints.*;
 import xaero.minimap.XaeroMinimap;
 
 import java.io.IOException;
@@ -24,6 +22,7 @@ public class KnownWaystonesHandler {
 
     @SubscribeEvent
     public static void handleMessage(KnownWaystonesEvent event) {
+
         List<IWaystone> waystones = event.getWaystones();
 
         XaeroMinimapSession session = ((IXaeroMinimapClientPlayNetHandler) Minecraft.getInstance().player.connection).getXaero_minimapSession();
@@ -43,7 +42,14 @@ public class KnownWaystonesHandler {
             waypointSet = waypointsManager.getCurrentWorld().getCurrentSet();
         }
 
+        String waypointCurrentDimension = waypointsManager.getCurrentWorld().getContainer().getSubName();
+
         for (IWaystone waystone : waystones) {
+            String waystoneDimension = waystone.getDimension().location().getPath();
+            if (!waystoneDimension.equals(waypointCurrentDimension)) {
+                continue;
+            }
+
             boolean matched = false;
 
             if (waystone instanceof InvalidWaystone) {
@@ -51,10 +57,16 @@ public class KnownWaystonesHandler {
             }
 
             String name = waystone.hasName() ? waystone.getName() : "New Waystone";
-            for (Waypoint waypoint : waypointSet.getList()) {
-                if (Waymaker.matching(waystone, waypoint)) {
-                    matched = true;
-                    waypoint.setName(name);
+
+            for (WaypointSet testPointSet : waypointsManager.getCurrentWorld().getSets().values()) {
+                for (Waypoint waypoint : testPointSet.getList()) {
+                    if (Waymaker.matching(waystone, waypoint)) {
+                        matched = true;
+                        waypoint.setName(name);
+                        break;
+                    }
+                }
+                if (matched) {
                     break;
                 }
             }
