@@ -1,9 +1,3 @@
-1.18-1.1
+1.19-1.0
     hextun01:
-        Fixed: Touching a new waystone in a new dimension no longer copies waypoints from other dimensions
-        Fixed: Touching a new waystone no longer copies waypoints from other lists
-        Fixed: Better config formatting
-========
-1.18-1.0
-    hextun01:
-        Initial release
+        Initial release for MC 1.19
