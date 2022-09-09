@@ -30,9 +30,6 @@ public class Config {
             targetCustomWaypointSet = builder
                     .comment("Should new waypoints be saved to a custom waypoint set? If false, new waypoints will be saved to the currently selected waypoint set.")
                     .define(VAR_targetCustomWaypointSet, false);
-            builder.pop();
-
-            builder.push("Custom Waypoint Set");
             customWaypointSet = builder
                     .comment(String.format("The custom waypoint set to save new waypoints to. Only takes effect if '%s' is true.", LABEL_targetCustomWaypointSet))
                     .define(VAR_customWaypointSet, DEFAULT_customWaypointSet);
